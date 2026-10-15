@@ -1,21 +1,16 @@
 import React, { useState } from "react";
 
 export default function GiftCardReveal({
-  brand = "Saks Fifth Avenue",
   cardNumber = "6366400057525021",
   pin = "1730",
-  asOf = new Date(),
-  message = "Enjoy this reward — just for you!",
+  amount = 25.0,
+  currency = "USD",
 }) {
+  const [revealed, setRevealed] = useState({ number: false, pin: false });
   const [copied, setCopied] = useState({ number: false, pin: false });
 
-  const formattedDate = new Intl.DateTimeFormat("en-US", {
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-    hour: "numeric",
-    minute: "2-digit",
-  }).format(asOf instanceof Date ? asOf : new Date(asOf));
+  const handleReveal = (key) =>
+    setRevealed((prev) => ({ ...prev, [key]: !prev[key] }));
 
   const handleCopy = async (value, key) => {
     try {
@@ -25,54 +20,60 @@ export default function GiftCardReveal({
     } catch (_) {}
   };
 
+  const formattedAmount = new Intl.NumberFormat("en-US", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(amount);
+
   return (
     <div className="card-shell">
       <div className="card-header">
         <div className="saks-logo-wrap">
-          <img src="/logo.jpg" alt="Saks Fifth Avenue" className="header-logo" />
+          <img src="/logo.png" alt="Saks Fifth Avenue" className="header-logo" />
         </div>
-        <p className="header-brand">GIFT CARD</p>
+        <p className="header-brand">Saks Fifth Avenue</p>
       </div>
 
       <div className="seam" />
 
       <div className="card-body">
-        <div className="balance-section">
-          <p className="balance-date">Balance as of {formattedDate}</p>
-          <p className="balance-note">
-            Balance updates may be delayed and may not reflect recent purchases.
-          </p>
+        <p className="gift-received">You've received a gift!</p>
+
+        <div className="amount-section">
+          <p className="amount-value">${formattedAmount}</p>
+          <p className="amount-currency">{currency}</p>
         </div>
 
         <div className="copy-rows">
-          <CopyRow
+          <MaskedRow
             label="Gift Card Number"
             value={cardNumber}
+            revealed={revealed.number}
             copied={copied.number}
+            onToggle={() => handleReveal("number")}
             onCopy={() => handleCopy(cardNumber, "number")}
           />
-          <CopyRow
+          <MaskedRow
             label="PIN"
             value={pin}
+            revealed={revealed.pin}
             copied={copied.pin}
+            onToggle={() => handleReveal("pin")}
             onCopy={() => handleCopy(pin, "pin")}
           />
-        </div>
-
-        <div className="card-message">
-          <p>{message}</p>
         </div>
       </div>
     </div>
   );
 }
 
-function CopyRow({ label, value, copied, onCopy }) {
+function MaskedRow({ label, value, revealed, copied, onToggle, onCopy }) {
+  const masked = "*".repeat(value.length);
   return (
     <div className="copy-row">
-      <div className="copy-row-info">
-        <p className="copy-row-label">{label}</p>
-        <p className="copy-row-value">{value}</p>
+      <div className="copy-row-info" onClick={onToggle} style={{ cursor: "pointer" }}>
+        <p className="copy-row-label">{label}:</p>
+        <p className="copy-row-value">{revealed ? value : masked}</p>
       </div>
       <button
         type="button"
