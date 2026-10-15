@@ -5,7 +5,6 @@ export default function GiftCardReveal({
   cardNumber = "6366400057525021",
   pin = "1730",
   asOf = new Date(),
-  balanceUrl = "#",
   message = "Enjoy this reward — just for you!",
 }) {
   const [copied, setCopied] = useState({ number: false, pin: false });
@@ -23,29 +22,21 @@ export default function GiftCardReveal({
       await navigator.clipboard.writeText(value.replace(/\s/g, ""));
       setCopied((prev) => ({ ...prev, [key]: true }));
       setTimeout(() => setCopied((prev) => ({ ...prev, [key]: false })), 1800);
-    } catch (_) {
-      // Clipboard unavailable — fail silently
-    }
+    } catch (_) {}
   };
 
   return (
     <div className="card-shell">
-
-      {/* ── Header: logo on black ── */}
       <div className="card-header">
         <div className="saks-logo-wrap">
-          <img src="/logo.png" alt="Saks Fifth Avenue" className="header-logo" />
+          <img src="/logo.jpg" alt="Saks Fifth Avenue" className="header-logo" />
         </div>
         <p className="header-brand">GIFT CARD</p>
       </div>
 
-      {/* ── Perforation seam ── */}
       <div className="seam" />
 
-      {/* ── Body ── */}
       <div className="card-body">
-
-        {/* Balance date only */}
         <div className="balance-section">
           <p className="balance-date">Balance as of {formattedDate}</p>
           <p className="balance-note">
@@ -53,7 +44,6 @@ export default function GiftCardReveal({
           </p>
         </div>
 
-        {/* Copy rows */}
         <div className="copy-rows">
           <CopyRow
             label="Gift Card Number"
@@ -69,11 +59,9 @@ export default function GiftCardReveal({
           />
         </div>
 
-        {/* Message */}
         <div className="card-message">
           <p>{message}</p>
         </div>
-
       </div>
     </div>
   );
