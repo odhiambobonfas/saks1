@@ -1,0 +1,263 @@
+/* ===== Reset & Base ===== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  width: 100%;
+  min-height: 100%;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: #1a1718;
+  min-height: 100vh;
+  color: #fff;
+}
+
+/* ===== Page layout ===== */
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(32px, 6vw, 80px) clamp(16px, 4vw, 32px);
+}
+
+/* ===== Card shell ===== */
+.card-shell {
+  width: 100%;
+  max-width: 420px;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid #3a3738;
+  background: #231f20;
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.5);
+}
+
+/* ===== Card Header ===== */
+.card-header {
+  background: #231f20;
+  padding: clamp(32px, 6vw, 52px) clamp(20px, 5vw, 36px) clamp(24px, 5vw, 36px);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  border-bottom: 1px solid #3a3738;
+}
+
+/* White square logo block — mirrors the card image */
+.saks-logo-wrap {
+  width: 160px;
+  height: 160px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+}
+
+.header-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.header-brand {
+  font-size: 12px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: #d4d0d1;
+  font-weight: 500;
+}
+
+/* ===== Perforation seam ===== */
+.seam {
+  position: relative;
+  height: 20px;
+  background: #1a1718;
+}
+
+.seam::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 22px;
+  background-image: radial-gradient(circle, #231f20 6px, transparent 6px);
+  background-size: 22px 22px;
+  background-position: center;
+  background-repeat: repeat-x;
+}
+
+/* ===== Card Body ===== */
+.card-body {
+  background: #231f20;
+  padding: clamp(24px, 5vw, 36px) clamp(20px, 5vw, 32px) clamp(28px, 5vw, 36px);
+}
+
+/* Amount */
+.amount-section {
+  text-align: center;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #3a3738;
+  margin-bottom: 20px;
+}
+
+.amount-value {
+  font-size: clamp(48px, 11vw, 68px);
+  color: #fff;
+  font-family: Georgia, 'Times New Roman', serif;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  font-weight: 400;
+}
+
+.amount-currency {
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #888;
+  margin-top: 6px;
+}
+
+/* Balance */
+.balance-section {
+  text-align: center;
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #3a3738;
+}
+
+.balance-date {
+  font-size: 12px;
+  color: #bbb;
+  margin-bottom: 6px;
+}
+
+.balance-note {
+  font-size: 10px;
+  color: #666;
+  line-height: 1.5;
+  margin-top: 8px;
+}
+
+/* Copy Rows */
+.copy-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.copy-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: #2e2a2b;
+  border: 1px solid #3a3738;
+  border-radius: 10px;
+  padding: 12px 14px;
+}
+
+.copy-row-info {
+  min-width: 0;
+}
+
+.copy-row-label {
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #777;
+  margin-bottom: 4px;
+}
+
+.copy-row-value {
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.06em;
+  font-family: 'Courier New', Courier, monospace;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.copy-btn {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #231f20;
+  background: #fff;
+  border: 1px solid #fff;
+  border-radius: 8px;
+  padding: 6px 12px;
+  cursor: pointer;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+
+.copy-btn:hover {
+  background: #e0e0e0;
+  border-color: #e0e0e0;
+}
+
+.copy-btn.copied {
+  background: #fff;
+  color: #231f20;
+  border-color: #fff;
+}
+
+.copy-btn svg {
+  width: 12px;
+  height: 12px;
+  stroke: currentColor;
+  stroke-width: 2.5;
+  fill: none;
+}
+
+.copy-btn:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+/* Message footer */
+.card-message {
+  padding-top: 20px;
+  border-top: 1px dashed #3a3738;
+  text-align: center;
+  font-size: 13px;
+  color: #bbb;
+  line-height: 1.6;
+  font-style: italic;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 400px) {
+  .copy-row-value {
+    font-size: 12px;
+  }
+  .card-shell {
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+  }
+}
+
+@media (min-width: 900px) {
+  .card-shell {
+    max-width: 460px;
+  }
+}
