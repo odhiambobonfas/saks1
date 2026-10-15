@@ -2,8 +2,6 @@ import React, { useState } from "react";
 
 export default function GiftCardReveal({
   brand = "Saks Fifth Avenue",
-  amount = 100.0,
-  currency = "USD",
   cardNumber = "6366400057525021",
   pin = "1730",
   asOf = new Date(),
@@ -11,11 +9,6 @@ export default function GiftCardReveal({
   message = "Enjoy this reward — just for you!",
 }) {
   const [copied, setCopied] = useState({ number: false, pin: false });
-
-  const formattedAmount = new Intl.NumberFormat("en-US", {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  }).format(amount);
 
   const formattedDate = new Intl.DateTimeFormat("en-US", {
     month: "long",
@@ -41,7 +34,7 @@ export default function GiftCardReveal({
       {/* ── Header: logo on black ── */}
       <div className="card-header">
         <div className="saks-logo-wrap">
-          <img src="/logo.jpg" alt="Saks Fifth Avenue" className="header-logo" />
+          <img src="/logo.png" alt="Saks Fifth Avenue" className="header-logo" />
         </div>
         <p className="header-brand">GIFT CARD</p>
       </div>
@@ -51,12 +44,6 @@ export default function GiftCardReveal({
 
       {/* ── Body ── */}
       <div className="card-body">
-
-        {/* Amount */}
-        <div className="amount-section">
-          <p className="amount-value">${formattedAmount}</p>
-          <p className="amount-currency">{currency}</p>
-        </div>
 
         {/* Balance date only */}
         <div className="balance-section">
