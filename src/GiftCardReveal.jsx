@@ -41,7 +41,7 @@ export default function GiftCardReveal({
       {/* ── Header: logo on black ── */}
       <div className="card-header">
         <div className="saks-logo-wrap">
-          <img src="/logo.png" alt="Saks Fifth Avenue" className="header-logo" />
+          <img src="/logo.jpg" alt="Saks Fifth Avenue" className="header-logo" />
         </div>
         <p className="header-brand">GIFT CARD</p>
       </div>
