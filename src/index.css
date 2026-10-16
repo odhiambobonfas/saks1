@@ -54,11 +54,15 @@ body {
 
 /* Logo — black & white */
 .saks-logo-wrap {
-  width: 140px;
-  height: 60px;
+  width: 150px;
+  height: 95px;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 10px 14px;
+  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.08);
 }
 
 .header-logo {
@@ -66,7 +70,6 @@ body {
   height: 100%;
   object-fit: contain;
   display: block;
-  filter: grayscale(1) invert(1);
 }
 
 .header-brand {
